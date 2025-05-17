@@ -1,8 +1,14 @@
-import {scrape} from "./scraper.js";
-import { Product } from "./product.js";
+import { scrape } from './scraper.js'
+import { Product } from './product.js'
+import { saveAllProducts } from './db.js'
+import { startServer } from './server.js'
 
-const res = await scrape();
+export async function scrapeAndSave() {
+  const rawListings = await scrape()
+  const products = rawListings.map(item => new Product(item.title, item.price, item.datePosted))
+  await saveAllProducts(products)
+}
 
-const products = res.map(item => new Product(item.title, item.price, item.datePosted));
+await scrapeAndSave()
 
-console.log(products[0].toJson().hash);
+startServer()
