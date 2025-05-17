@@ -1,8 +1,12 @@
 import express from 'express'
+import cors from "cors";
+
 import { getAllProducts } from './db.js'
 
 const app = express()
 const PORT = 3000
+
+app.use(cors())
 
 app.get('/products', async (_req, res) => {
   try {
