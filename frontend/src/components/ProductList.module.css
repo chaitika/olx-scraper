@@ -1,0 +1,41 @@
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  background-color: #fff;
+  transition: transform 0.2s ease;
+}
+
+.item:hover {
+  transform: scale(1.02);
+  background-color: #f8f9fa;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.meta {
+  color: #333;
+  margin-bottom: 0.3rem;
+}
+
+.link {
+  display: inline-block;
+  color: #007bff;
+  text-decoration: none;
+  word-break: break-word;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

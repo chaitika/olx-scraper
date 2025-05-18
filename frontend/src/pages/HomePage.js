@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ProductList from "../components/ProductList";
 import { fetchProducts } from "../api/products";
+import styles from "./HomePage.module.css";
 
 function HomePage() {
   const [products, setProducts] = useState([]);
@@ -27,12 +28,17 @@ function HomePage() {
   };
 
   return (
-    <div style={{ padding: "1.5rem" }}>
-      <h2>OLX Listings</h2>
+    <div className={styles.container}>
+      <h2 className={styles.title}>OLX Listings</h2>
       <ProductList products={products} />
       {loading && <p>Loading...</p>}
       {!loading && hasMore && (
-        <button onClick={() => setPage((prev) => prev + 1)}>Load More</button>
+        <button
+          className={styles.button}
+          onClick={() => setPage((prev) => prev + 1)}
+        >
+          Load More
+        </button>
       )}
       {!hasMore && <p>No more listings available.</p>}
     </div>
