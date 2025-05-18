@@ -1,25 +1,28 @@
-import express from 'express'
+import express from "express";
 import cors from "cors";
 
-import { getAllProducts } from './db.js'
+import { getPaginatedProducts } from "./db.js";
 
-const app = express()
-const PORT = 3001
+const app = express();
+const PORT = 3001;
 
-app.use(cors())
+app.use(cors());
 
-app.get('/products', async (_req, res) => {
+app.get("/products", async (req, res) => {
+  const page = parseInt(req.query.page || "1");
+  const limit = parseInt(req.query.limit || "10");
+
   try {
-    const products = await getAllProducts()
-    res.json(products)
+    const products = await getPaginatedProducts({ page, limit });
+    res.json(products);
   } catch (err) {
-    console.error(err)
-    res.status(500).json({ error: 'Internal Server Error' })
+    console.error(err);
+    res.status(500).send("Server error");
   }
-})
+});
 
 export function startServer() {
   app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}/products`)
-  })
+    console.log(`Server running at http://localhost:${PORT}/products`);
+  });
 }
