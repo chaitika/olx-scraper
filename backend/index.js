@@ -11,4 +11,10 @@ export async function scrapeAndSave() {
 
 await scrapeAndSave()
 
+const SCRAPE_INTERVAL =  5 * 60 * 1000 // 5 mins
+setInterval(async () => {
+  console.log(`[${new Date().toISOString()}] Running scheduled scrape`)
+  await scrapeAndSave()
+}, SCRAPE_INTERVAL)
+
 startServer()

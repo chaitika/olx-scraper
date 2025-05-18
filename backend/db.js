@@ -5,8 +5,6 @@ const db = knex(config.development)
 
 export async function saveAllProducts(products) {
     if (!products || products.length === 0) return
-    
-    console.log(products);
 
     const rows = products.map(p => {
         const { name, price, date, hash, timestamp } = p.toJson()
